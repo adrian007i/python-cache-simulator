@@ -1,0 +1,60 @@
+Experiment 1 : Suited for LRU
+---------------------
+STORED IN RAM   a = 1 
+STORED IN RAM   b = 2 
+STORED IN RAM   c = 3 
+STORED IN CACHE a = 1 
+CACHE READ      a = 1
+STORED IN CACHE b = 2 
+CACHE READ      b = 2
+CACHE EVICTED   a 
+STORED IN CACHE c = 3 
+CACHE READ      c = 3
+CACHE READ      c = 3
+
+SUMMARY
+Cache Hits      1 
+Cache Misses    3 
+Cache Ratio     25.0% 
+FINAL CACHE:    {'b': {'value': 2, 'last_used': 170098227888336, 'usage_count': 1}, 'c': {'value': 3, 'last_used': 170098227888340, 'usage_count': 2}}
+
+Experiment 2 : Suited for LFU
+---------------------
+STORED IN RAM   a = 1 
+STORED IN RAM   b = 2 
+STORED IN RAM   c = 3 
+STORED IN CACHE a = 1 
+CACHE READ      a = 1
+CACHE READ      a = 1
+STORED IN CACHE b = 2 
+CACHE READ      b = 2
+CACHE EVICTED   b 
+STORED IN CACHE c = 3 
+CACHE READ      c = 3
+
+SUMMARY
+Cache Hits      1 
+Cache Misses    3 
+Cache Ratio     25.0% 
+FINAL CACHE:    {'a': {'value': 1, 'last_used': 170098227888380, 'usage_count': 2}, 'c': {'value': 3, 'last_used': 170098227888391, 'usage_count': 1}}
+
+Experiment 3 : Suited for LIFO
+---------------------
+STORED IN RAM   a = 1 
+STORED IN RAM   b = 2 
+STORED IN RAM   c = 3 
+STORED IN CACHE a = 1 
+CACHE READ      a = 1
+CACHE READ      a = 1
+STORED IN CACHE b = 2 
+CACHE READ      b = 2
+CACHE EVICTED   a 
+STORED IN CACHE c = 3 
+CACHE READ      c = 3
+
+SUMMARY
+Cache Hits      1 
+Cache Misses    3 
+Cache Ratio     25.0% 
+FINAL CACHE:    {'b': {'value': 2, 'last_used': 170098227888437, 'usage_count': 1}, 'c': {'value': 3, 'last_used': 170098227888438, 'usage_count': 1}}
+

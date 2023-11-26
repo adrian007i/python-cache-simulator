@@ -13,6 +13,7 @@ class CACHE:
         self.replacement_policy = replacement_policy 
         self.hit = 0
         self.miss = 0  
+        CACHE.cache = {}
 
     # read a value from cache
     def read(self, name):  
@@ -24,8 +25,8 @@ class CACHE:
             self.hit = self.hit + 1
             CACHE.cache[name]["usage_count"] =   CACHE.cache[name]["usage_count"] + 1
             CACHE.cache[name]["last_used"] =  time 
-            print(f"CACHE READ      {name} = {CACHE.cache[name]['value']}")
-            return 
+            return f"CACHE READ      {name} = {CACHE.cache[name]['value']}"
+             
 
         # fetch the data from ram if not found in cache
         data_from_ram = RAM.ram[name]
@@ -36,30 +37,28 @@ class CACHE:
         
         self.miss = self.miss + 1 
         
+        text = ""
         # check if the cache is full
         if len(CACHE.cache) == self.cache_size:
             
+            key_to_evict = None
             if self.replacement_policy == "LRU":
-                key_to_evict = LRU(CACHE.cache)
-                if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
-                print(f"CACHE EVICTED   {key_to_evict} ")
+                key_to_evict = LRU(CACHE.cache) 
             
             elif self.replacement_policy == "LFU":
                 key_to_evict = LFU(CACHE.cache)
-                if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
-                print(f"CACHE EVICTED   {key_to_evict} ") 
 
             elif self.replacement_policy == "LIFO":
                 key_to_evict = LIFO(CACHE.cache)
-                if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
-                print(f"CACHE EVICTED   {key_to_evict} ")   
+
+            if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
+            text=  f"CACHE EVICTED   {key_to_evict} \n"
 
         # write data from ram to cache 
         data_from_ram["usage_count"] =   data_from_ram["usage_count"] + 1
         data_from_ram["last_used"] =  time
         CACHE.cache[name] = data_from_ram
-        print(f"STORED IN CACHE {name} = {CACHE.cache[name]['value']}")
-        print(f"CACHE READ      {name} = {CACHE.cache[name]['value']}")
+        return f"{text}STORED IN CACHE {name} = {CACHE.cache[name]['value']} \nCACHE READ      {name} = {CACHE.cache[name]['value']}"
     
     def getHit(self):
         return  self.hit
