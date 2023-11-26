@@ -17,18 +17,19 @@ ram = RAM(ram_size)
 cache = CACHE(cache_size, replace_policy) 
 
 
-# run experiments here
+# run experiments here 
 ram.write("a" , 100)
 ram.write("b" , 2)
 ram.write("c" , 3) 
 cache.read("a")
 cache.read("b")
 cache.read("c")
-cache.read("c") 
+cache.read("c")  
 
 hits = cache.getHit()
 miss = cache.getMiss()
 ratio = hits /  (hits + miss)
 print(f"Cache Hits      {cache.getHit()}")
 print(f"Cache Misses    {cache.getMiss()}")
-print(f"Cache Ratio     {ratio}")
+print(f"Cache Ratio     {ratio * 100}%")
+print(CACHE.cache)

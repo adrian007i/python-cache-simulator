@@ -1,6 +1,6 @@
 
 
-from eviction_policies import LRU 
+from eviction_policies import LRU, LFU, LIFO
 from datetime import datetime
 import time
 from ram import RAM
@@ -38,11 +38,21 @@ class CACHE:
         
         # check if the cache is full
         if len(CACHE.cache) == self.cache_size:
+            
             if self.replacement_policy == "LRU":
                 key_to_evict = LRU(CACHE.cache)
                 if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
+                print(f"CACHE EVICTED   {key_to_evict} ")
+            
+            elif self.replacement_policy == "LFU":
+                key_to_evict = LFU(CACHE.cache)
+                if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
                 print(f"CACHE EVICTED   {key_to_evict} ") 
-                
+
+            elif self.replacement_policy == "LIFO":
+                key_to_evict = LIFO(CACHE.cache)
+                if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
+                print(f"CACHE EVICTED   {key_to_evict} ")   
 
         # write data from ram to cache 
         data_from_ram["usage_count"] =   data_from_ram["usage_count"] + 1

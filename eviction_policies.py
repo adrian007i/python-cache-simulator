@@ -17,3 +17,26 @@ def LRU(cache):
             oldest_value = value 
     
     return oldest_key
+
+def LFU(cache): 
+    oldest_key, oldest_value = next(iter(cache.items()))
+
+    # iterate a the cache to find the variable
+    for key, value in cache.items():
+
+        # variable is never used
+        if value['usage_count'] == 0:
+            return key
+        
+        # compare to find the last used variable
+        if value["usage_count"] < oldest_value["usage_count"]:
+            oldest_key = key
+            oldest_value = value 
+    
+    return oldest_key
+
+
+def LIFO(cache): 
+    oldest_key, oldest_value = next(iter(cache.items())) 
+    print(oldest_key)
+    return oldest_key
