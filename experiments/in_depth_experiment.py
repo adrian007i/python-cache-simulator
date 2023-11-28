@@ -1,8 +1,4 @@
-# for readwrites
-# ["a" , 21] represents a write to ram
-# ["a"] represents an attempted read from cache
-
-small_tests = [
+experiments = [
     {
         "name" : "Experiment 1 : Suited for LRU",
         "ram_size" : 200,

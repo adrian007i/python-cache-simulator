@@ -1,19 +1,18 @@
 from datetime import datetime
+import time
+
 from ram import RAM
 from cache import CACHE 
-from experiments_big import tests
-from experiments_small import small_tests
-import time
  
 
-with open('results_small.txt', 'w') as file: 
+from experiments.summary_experiment import experiments2
+from experiments.in_depth_experiment import experiments
+
+with open('result/results_in_depth.txt', 'w') as file: 
     file.close()
 
-with open('results_big.csv', 'w') as file2: 
-    file2.close()
-
 # run small experiments in detail here 
-for test in small_tests:  
+for test in experiments:  
     log = ""
 
     # initialize the ram and cache classes
@@ -28,7 +27,7 @@ for test in small_tests:
         else:   
             log = log + cache.read(req[0]) + "\n" #read
 
-    with open('results_small.txt', 'a') as file:
+    with open('result/results_in_depth.txt', 'a') as file:
         file.write(test["name"])
         file.write("\n---------------------\n")
         file.write(log)
@@ -43,13 +42,12 @@ for test in small_tests:
         file.write(str(CACHE.cache)) 
         file.write(f"\n\n") 
 
-with open('results_big.csv', 'a') as file2:
-    file2.write("Policy, Tests, Cache, RAM, HIT, MISS, RATIO,time (ns)\n")
-
-
+with open('result/results_summary.csv', 'w') as file2:
+    file2.write("Test, Policy, Tests, Cache, RAM, HIT, MISS, RATIO,time (ns)\n")
+    file2.close()
 
 # run small experiments in detail here 
-for test in tests():  
+for test in experiments2():  
 
     start_time = time.time()
 
@@ -67,10 +65,10 @@ for test in tests():
 
     
     end_time = time.time()
-    with open('results_big.csv', 'a') as file2:
-        file2.write(f'{test["replace_policy"]}, {len(test["read_writes"])},{test["cache_size"]},{test["ram_size"]},{cache.getHit()} ,{cache.getMiss()}, {ratio * 100},{(end_time - start_time) * 1000}\n')
+    with open('result/results_summary.csv', 'a') as file2:
+        file2.write(f'{test["name"]},{test["replace_policy"]}, {len(test["read_writes"])},{test["cache_size"]},{test["ram_size"]},{cache.getHit()} ,{cache.getMiss()}, {ratio * 100},{(end_time - start_time) * 1000}\n')
 
-
+    
 
 print("RESULTS SAVED")
 
