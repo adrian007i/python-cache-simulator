@@ -11,7 +11,7 @@ class RAM:
 
     # write the variable to ram dictionary
     def write(self, name, value):
-        data_packet = {"value": value, "last_used": None, "usage_count": 0}
+        data_packet = {"value": value, "last_used": None, "usage_count": 0, "cached_time" : None }
 
         # check if value exist, if it exist, we update
         if RAM.ram.get(name) is not None:

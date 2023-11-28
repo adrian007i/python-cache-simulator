@@ -51,13 +51,17 @@ class CACHE:
             elif self.replacement_policy == "FIFO":
                 key_to_evict = FIFO(CACHE.cache)
 
-            if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
-            text=  f"CACHE EVICTED   {key_to_evict} \n"
+            if key_to_evict in CACHE.cache: 
+                CACHE.cache[key_to_evict]["cached_time"] =  None
+                del CACHE.cache[key_to_evict]
+                text=  f"CACHE EVICTED   {key_to_evict} \n"
 
         # write data from ram to cache 
-        data_from_ram["usage_count"] =   data_from_ram["usage_count"] + 1
         data_from_ram["last_used"] =  time
+        data_from_ram["usage_count"] = data_from_ram["usage_count"] + 1
+        data_from_ram["cached_time"] = time
         CACHE.cache[name] = data_from_ram
+
         return f"{text}STORED IN CACHE {name} = {CACHE.cache[name]['value']} \nCACHE READ      {name} = {CACHE.cache[name]['value']}"
     
     def getHit(self):

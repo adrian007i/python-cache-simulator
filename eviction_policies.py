@@ -36,6 +36,16 @@ def LFU(cache):
     return oldest_key
 
 
+# finds the last most used variable and returns its name to be removed
 def FIFO(cache): 
-    oldest_key, oldest_value = next(iter(cache.items()))  
+    oldest_key, oldest_value = next(iter(cache.items()))
+
+    # iterate a the cache to find the variable
+    for key, value in cache.items(): 
+        
+        # compare to find the last used variable
+        if value["cached_time"] < oldest_value["cached_time"]:
+            oldest_key = key
+            oldest_value = value 
+    
     return oldest_key

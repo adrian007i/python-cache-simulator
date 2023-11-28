@@ -5,18 +5,21 @@ STORED IN RAM   b = 2
 STORED IN RAM   c = 3 
 STORED IN CACHE a = 1 
 CACHE READ      a = 1
+CACHE READ      a = 1
 STORED IN CACHE b = 2 
 CACHE READ      b = 2
 CACHE EVICTED   a 
 STORED IN CACHE c = 3 
 CACHE READ      c = 3
-CACHE READ      c = 3
+CACHE EVICTED   b 
+STORED IN CACHE a = 1 
+CACHE READ      a = 1
 
 SUMMARY
 Cache Hits      1 
-Cache Misses    3 
-Cache Ratio     25.0% 
-FINAL CACHE:    {'b': {'value': 2, 'last_used': 170119989113192, 'usage_count': 1}, 'c': {'value': 3, 'last_used': 170119989113195, 'usage_count': 2}}
+Cache Misses    4 
+Cache Ratio     20.0% 
+FINAL CACHE:    {'c': {'value': 3, 'last_used': 170121330153855, 'usage_count': 1, 'cached_time': 170121330153855}, 'a': {'value': 1, 'last_used': 170121330153857, 'usage_count': 3, 'cached_time': 170121330153857}}
 
 Experiment 2 : Suited for LFU
 ---------------------
@@ -31,12 +34,13 @@ CACHE READ      b = 2
 CACHE EVICTED   b 
 STORED IN CACHE c = 3 
 CACHE READ      c = 3
+CACHE READ      a = 1
 
 SUMMARY
-Cache Hits      1 
+Cache Hits      2 
 Cache Misses    3 
-Cache Ratio     25.0% 
-FINAL CACHE:    {'a': {'value': 1, 'last_used': 170119989113215, 'usage_count': 2}, 'c': {'value': 3, 'last_used': 170119989113217, 'usage_count': 1}}
+Cache Ratio     40.0% 
+FINAL CACHE:    {'a': {'value': 1, 'last_used': 170121330153886, 'usage_count': 3, 'cached_time': 170121330153882}, 'c': {'value': 3, 'last_used': 170121330153884, 'usage_count': 1, 'cached_time': 170121330153884}}
 
 Experiment 3 : Suited for FIFO
 ---------------------
@@ -51,10 +55,13 @@ CACHE READ      b = 2
 CACHE EVICTED   a 
 STORED IN CACHE c = 3 
 CACHE READ      c = 3
+CACHE EVICTED   b 
+STORED IN CACHE a = 1 
+CACHE READ      a = 1
 
 SUMMARY
 Cache Hits      1 
-Cache Misses    3 
-Cache Ratio     25.0% 
-FINAL CACHE:    {'b': {'value': 2, 'last_used': 170119989113247, 'usage_count': 1}, 'c': {'value': 3, 'last_used': 170119989113248, 'usage_count': 1}}
+Cache Misses    4 
+Cache Ratio     20.0% 
+FINAL CACHE:    {'c': {'value': 3, 'last_used': 170121330153900, 'usage_count': 1, 'cached_time': 170121330153900}, 'a': {'value': 1, 'last_used': 170121330153901, 'usage_count': 3, 'cached_time': 170121330153901}}
 
