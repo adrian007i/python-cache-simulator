@@ -2,7 +2,7 @@
 # ["a" , 21] represents a write to ram
 # ["a"] represents an attempted read from cache
 
-tests = [
+small_tests = [
     {
         "name" : "Experiment 1 : Suited for LRU",
         "ram_size" : 200,
@@ -23,5 +23,5 @@ tests = [
         "cache_size" : 2,
         "replace_policy" : "FIFO",
         "read_writes":[["a",1],["b",2],["c",3],["a"],["a"],["b"],["c"]]
-    }
+    }, 
 ]
