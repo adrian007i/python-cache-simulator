@@ -10,21 +10,25 @@ def randonly_generate_experiment_data(size , unique_reads):
     return output 
 
 experiments = []
+experiments_size = 10
 
 ram = 1000
-cache = 10,
-uniqueness = 1  # 10 percent will be unique
+cache_size = [10,20,30,40,50,60,70,80,90,100]
+uniqueness = [.1, .2, .3, .4, .5, .6, .7, .8, .9, 1]
 
-for i in range (1 , 10): 
-    data_set = randonly_generate_experiment_data (ram, uniqueness)  
-    for x in ["LRU" , "LFU", "FIFO"]:
-        experiments.append({
-            "name" : uniqueness,
-            "ram_size" : ram,
-            "cache_size" : cache,
-            "replace_policy" : x,
-            "read_writes": data_set
-        })
+for u in  uniqueness:
+    for s in  cache_size:
+        for i in range (1 , experiments_size): 
+            data_set = randonly_generate_experiment_data (ram, u)  
 
-def experiments2():
+            for x in ["LRU" , "LFU", "FIFO"]:
+                experiments.append({
+                    "name" : str(u * 100),
+                    "ram_size" : ram,
+                    "cache_size" : s,
+                    "replace_policy" : x,
+                    "read_writes": data_set
+                })
+    
+def experiments2(): 
     return experiments

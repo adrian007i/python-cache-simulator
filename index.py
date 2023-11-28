@@ -43,7 +43,7 @@ for test in experiments:
         file.write(f"\n\n") 
 
 with open('result/results_summary.csv', 'w') as file2:
-    file2.write("Test, Policy, Tests, Cache, RAM, HIT, MISS, RATIO,time (ns)\n")
+    file2.write("UNIQUE_READS_PERCENT, POLICY, READ_WRITES, CACHE_SIZE, RAM_SIZE, HIT, MISS, RATIO,TIME ns\n")
     file2.close()
 
 # run small experiments in detail here 
@@ -63,10 +63,15 @@ for test in experiments2():
         else:   
             cache.read(req[0]) #read
 
+
+    hits = cache.getHit()
+    miss = cache.getMiss()
+    ratio = hits /  (hits + miss)
+
     
-    end_time = time.time()
-    with open('result/results_summary.csv', 'a') as file2:
-        file2.write(f'{test["name"]},{test["replace_policy"]}, {len(test["read_writes"])},{test["cache_size"]},{test["ram_size"]},{cache.getHit()} ,{cache.getMiss()}, {ratio * 100},{(end_time - start_time) * 1000}\n')
+    end_time = time.time() 
+    with open('result/results_summary.csv', 'a') as file2: 
+        file2.write(f'{test["name"]},{test["replace_policy"]}, {len(test["read_writes"])},{test["cache_size"]},{test["ram_size"]},{hits} ,{miss}, {ratio},{(end_time - start_time) * 1000}\n')
 
     
 
