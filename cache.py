@@ -1,6 +1,6 @@
 
 
-from eviction_policies import LRU, LFU, LIFO
+from eviction_policies import LRU, LFU, FIFO
 from datetime import datetime
 import time
 from ram import RAM
@@ -48,8 +48,8 @@ class CACHE:
             elif self.replacement_policy == "LFU":
                 key_to_evict = LFU(CACHE.cache)
 
-            elif self.replacement_policy == "LIFO":
-                key_to_evict = LIFO(CACHE.cache)
+            elif self.replacement_policy == "FIFO":
+                key_to_evict = FIFO(CACHE.cache)
 
             if key_to_evict in CACHE.cache: del CACHE.cache[key_to_evict]
             text=  f"CACHE EVICTED   {key_to_evict} \n"

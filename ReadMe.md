@@ -1,6 +1,6 @@
 # Python Memory Simulator
 
-## Simulate RAM, CPU cache and Eviction Policies (LFU , LRU, LIFO)
+## Simulate RAM, CPU cache and Eviction Policies (LFU , LRU, FIFO)
 
 To run this application:
 - install python3

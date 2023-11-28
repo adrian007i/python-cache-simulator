@@ -36,6 +36,6 @@ def LFU(cache):
     return oldest_key
 
 
-def LIFO(cache): 
+def FIFO(cache): 
     oldest_key, oldest_value = next(iter(cache.items()))  
     return oldest_key

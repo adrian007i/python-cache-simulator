@@ -18,10 +18,10 @@ tests = [
         "read_writes":[["a",1],["b",2],["c",3],["a"],["a"],["b"],["c"]]
     },
     {
-        "name" : "Experiment 3 : Suited for LIFO",
+        "name" : "Experiment 3 : Suited for FIFO",
         "ram_size" : 200,
         "cache_size" : 2,
-        "replace_policy" : "LIFO",
+        "replace_policy" : "FIFO",
         "read_writes":[["a",1],["b",2],["c",3],["a"],["a"],["b"],["c"]]
     }
 ]
