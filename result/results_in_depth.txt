@@ -19,7 +19,7 @@ SUMMARY
 Cache Hits      1 
 Cache Misses    4 
 Cache Ratio     20.0% 
-FINAL CACHE:    {'c': {'value': 3, 'last_used': 170121513160386, 'usage_count': 1, 'cached_time': 170121513160386}, 'a': {'value': 1, 'last_used': 170121513160387, 'usage_count': 3, 'cached_time': 170121513160387}}
+FINAL CACHE:    {'c': {'value': 3, 'last_used': 170122185760750, 'usage_count': 1, 'cached_time': 170122185760750}, 'a': {'value': 1, 'last_used': 170122185760750, 'usage_count': 3, 'cached_time': 170122185760750}}
 
 Experiment 2 : Suited for LFU
 ---------------------
@@ -40,7 +40,7 @@ SUMMARY
 Cache Hits      2 
 Cache Misses    3 
 Cache Ratio     40.0% 
-FINAL CACHE:    {'a': {'value': 1, 'last_used': 170121513160416, 'usage_count': 3, 'cached_time': 170121513160411}, 'c': {'value': 3, 'last_used': 170121513160414, 'usage_count': 1, 'cached_time': 170121513160414}}
+FINAL CACHE:    {'a': {'value': 1, 'last_used': 170122185761353, 'usage_count': 3, 'cached_time': 170122185761353}, 'c': {'value': 3, 'last_used': 170122185761353, 'usage_count': 1, 'cached_time': 170122185761353}}
 
 Experiment 3 : Suited for FIFO
 ---------------------
@@ -63,5 +63,5 @@ SUMMARY
 Cache Hits      1 
 Cache Misses    4 
 Cache Ratio     20.0% 
-FINAL CACHE:    {'c': {'value': 3, 'last_used': 170121513160438, 'usage_count': 1, 'cached_time': 170121513160438}, 'a': {'value': 1, 'last_used': 170121513160440, 'usage_count': 3, 'cached_time': 170121513160440}}
+FINAL CACHE:    {'c': {'value': 3, 'last_used': 170122185761353, 'usage_count': 1, 'cached_time': 170122185761353}, 'a': {'value': 1, 'last_used': 170122185761353, 'usage_count': 3, 'cached_time': 170122185761353}}
 
